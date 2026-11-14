@@ -24,10 +24,10 @@ class NewsController extends Controller
     {
         $filters = $request->validate(['category' => ['nullable', 'integer', 'exists:news_categories,id'], 'q' => ['nullable', 'string', 'max:150']]);
         $query = NewsPost::with('category')->withCount('attachments')->where('is_published', true);
-        if (!empty($filters['category'])) {
+        if (! empty($filters['category'])) {
             $query->where('news_category_id', $filters['category']);
         }
-        if (!empty($filters['q'])) {
+        if (! empty($filters['q'])) {
             $query->where('title', 'like', '%'.$filters['q'].'%');
         }
 

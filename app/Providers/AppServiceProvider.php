@@ -12,6 +12,6 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        Gate::define('manage-news', fn (User $user): bool => $user->is_staff);
+        Gate::define('manage-news', fn (User $user): bool => $user->is_staff === true);
     }
 }

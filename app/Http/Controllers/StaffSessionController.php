@@ -18,7 +18,7 @@ class StaffSessionController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $credentials = $request->validate(['email' => ['required', 'email'], 'password' => ['required', 'string']]);
-        if (!Auth::attempt([...$credentials, 'is_staff' => true])) {
+        if (! Auth::attempt([...$credentials, 'is_staff' => true])) {
             throw ValidationException::withMessages(['email' => 'อีเมลหรือรหัสผ่านไม่ถูกต้อง หรือบัญชีนี้ไม่มีสิทธิ์เจ้าหน้าที่']);
         }
         $request->session()->regenerate();

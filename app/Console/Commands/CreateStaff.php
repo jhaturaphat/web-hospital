@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 class CreateStaff extends Command
 {
     protected $signature = 'hospital:create-staff';
+
     protected $description = 'สร้างบัญชีเจ้าหน้าที่สำหรับจัดการข่าวโรงพยาบาล';
 
     public function handle(): int
@@ -19,6 +20,7 @@ class CreateStaff extends Command
             foreach ($validator->errors()->all() as $error) {
                 $this->error($error);
             }
+
             return self::FAILURE;
         }
         $user = new User;
